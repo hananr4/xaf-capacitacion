@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Capacitación - Test1">
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Base User" />
+    <Class Name="Test1.Module.BusinessObjects.Persona">
+      <OwnMembers>
+        <Member Name="FechaNacimiento" Caption="Fecha de Nacimiento" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="23.1.5.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <ListView Id="ApplicationUser_ListView" Caption="Users" />
+    <DetailView Id="Persona_DetailView">
+      <Items>
+        <PropertyEditor Id="FechaNacimiento" AllowEdit="False" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="26.58450704225352">
+            <LayoutGroup Id="Persona" RelativeSize="100">
+              <LayoutGroup Id="Persona_col1" RelativeSize="49.935649935649934">
+                <LayoutItem Id="Identificacion" RelativeSize="28.571428571428573" />
+                <LayoutItem Id="Apellido" RelativeSize="21.428571428571427" />
+                <LayoutItem Id="Nombre" RelativeSize="21.428571428571427" />
+                <LayoutItem Id="FechaNacimiento" RelativeSize="28.571428571428573" />
+              </LayoutGroup>
+              <LayoutGroup Id="Persona_col2" RelativeSize="50.064350064350066" Caption="Persona_col2">
+                <LayoutItem Id="CargasFamiliares" RelativeSize="100" />
+                <LayoutItem Id="DireccionDomicilio.Interseccion" RelativeSize="71.42857142857143" Index="1" Removed="True" />
+                <LayoutItem Id="DireccionDomicilio.Numero" RelativeSize="21.428571428571427" Index="1" Removed="True" />
+                <LayoutItem Id="DireccionDomicilio.Calle" RelativeSize="21.428571428571427" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" RelativeSize="19.88950276243094" Removed="True">
+              <LayoutItem Id="Oid" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="1" RelativeSize="15.669014084507042" Caption="Dirección" IsNewNode="True">
+            <LayoutGroup Id="Auto0429ff9d-db7a-483f-8ff0-b22887ab3363" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="50" IsNewNode="True">
+              <LayoutItem Id="DireccionDomicilio.Calle" ViewItem="DireccionDomicilio.Calle" Index="0" RelativeSize="49.935649935649934" IsNewNode="True" />
+              <LayoutItem Id="DireccionDomicilio.Numero" ViewItem="DireccionDomicilio.Numero" Index="1" RelativeSize="50.064350064350066" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutItem Id="DireccionDomicilio.Interseccion" ViewItem="DireccionDomicilio.Interseccion" Index="1" RelativeSize="50" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="Tareas_Group" Direction="Vertical" RelativeSize="57.74647887323944" Index="2">
+            <LayoutItem Id="Tareas" RelativeSize="100" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Persona_DetailView_FechaNacimiento" CaptionColon=":" EnableCaptionColon="True" CaptionLocation="Default" CaptionHorizontalAlignment="Default" CaptionVerticalAlignment="Default" CaptionWordWrap="Default" EnableLayoutGroupImages="True" CustomizationEnabled="True" RequiredFieldMark="*" ClassName="Test1.Module.BusinessObjects.Persona" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="Apellido" PropertyName="Apellido" IsNewNode="True" />
+        <PropertyEditor Id="CargasFamiliares" PropertyName="CargasFamiliares" IsNewNode="True" />
+        <PropertyEditor Id="DireccionDomicilio.Calle" PropertyName="DireccionDomicilio.Calle" IsNewNode="True" />
+        <PropertyEditor Id="DireccionDomicilio.Interseccion" PropertyName="DireccionDomicilio.Interseccion" IsNewNode="True" />
+        <PropertyEditor Id="DireccionDomicilio.Numero" PropertyName="DireccionDomicilio.Numero" IsNewNode="True" />
+        <PropertyEditor Id="DireccionDomicilio.Oid" PropertyName="DireccionDomicilio.Oid" IsNewNode="True" />
+        <PropertyEditor Id="EsEmpleado" PropertyName="EsEmpleado" IsNewNode="True" />
+        <PropertyEditor Id="FechaNacimiento" PropertyName="FechaNacimiento" IsNewNode="True" />
+        <PropertyEditor Id="Identificacion" PropertyName="Identificacion" IsNewNode="True" />
+        <PropertyEditor Id="Nombre" PropertyName="Nombre" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="Tareas" PropertyName="Tareas" View="Persona_Tareas_ListView" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" RelativeSize="100" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" RelativeSize="100" IsNewNode="True">
+            <LayoutGroup Id="Persona" Index="0" Direction="Vertical" ShowCaption="False" RelativeSize="100" IsNewNode="True">
+              <LayoutGroup Id="Persona_col1" Index="0" ShowCaption="False" RelativeSize="100" Caption="Persona_col1" IsNewNode="True">
+                <LayoutItem Id="FechaNacimiento" ViewItem="FechaNacimiento" ShowCaption="" Index="0" RelativeSize="100" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Persona_ListView">
+      <Columns>
+        <ColumnInfo Id="CargasFamiliares" Index="-1" />
+        <ColumnInfo Id="DireccionDomicilio" Index="-1" />
+        <ColumnInfo Id="Identificacion" Index="0" SortIndex="1" />
+        <ColumnInfo Id="Nombre" Index="1" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>
