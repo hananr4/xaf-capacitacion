@@ -37,12 +37,13 @@ namespace Test1.Module.Controllers
             DarBajaEmpleadoAction.Caption = "Dar de baja";
             DarBajaEmpleadoAction.ImageName = "BO_Customer";
             DarBajaEmpleadoAction.PaintStyle = DevExpress.ExpressApp.Templates.ActionItemPaintStyle.CaptionAndImage;
-
+            DarBajaEmpleadoAction.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
 
             CambiarFechaNacimiento = new PopupWindowShowAction(this, "CambiarFechaNacimiento", "View");
             CambiarFechaNacimiento.Execute += CambiarFechaNacimiento_Execute;
             CambiarFechaNacimiento.CustomizePopupWindowParams += CambiarFechaNacimiento_CustomizePopupWindowParams;
             CambiarFechaNacimiento.TargetObjectType = typeof(BusinessObjects.Persona);
+            CambiarFechaNacimiento.TypeOfView = typeof(DevExpress.ExpressApp.DetailView);
         }
         private void CambiarFechaNacimiento_Execute(object sender, PopupWindowShowActionExecuteEventArgs e)
         {

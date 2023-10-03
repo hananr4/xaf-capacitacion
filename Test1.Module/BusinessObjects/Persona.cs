@@ -1,4 +1,5 @@
 ﻿using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
@@ -13,10 +14,15 @@ namespace Test1.Module.BusinessObjects
 {
     [DefaultClassOptions]
     [RuleCriteria("CargasFamiliares>=0")]
+    [Appearance("PersonaEmpleado", Criteria = "EsEmpleado", TargetItems = "Identificacion, Nombre",
+        BackColor = "Yellow", FontColor = "Red" )]
+    [Appearance("PersonaEmpleado2", Criteria = "!EsEmpleado", TargetItems = "Identificacion, Nombre",
+        FontColor = "Blue")]
     public class Persona : XPObject
     {
         public Persona(Session session) : base(session)        { }
 
+        
         bool esEmpleado;
         Direccion direccionDomicilio;
         string apellido;
@@ -48,6 +54,16 @@ namespace Test1.Module.BusinessObjects
         {
             get => nombre;
             set => SetPropertyValue(nameof(Nombre), ref nombre, value);
+        }
+
+
+        
+        [FetchOnly]
+        [Persistent("NombreCompleto")]
+        public string NombreCompleto
+        {
+            get;
+            internal set;
         }
 
         public DateTime FechaNacimiento
