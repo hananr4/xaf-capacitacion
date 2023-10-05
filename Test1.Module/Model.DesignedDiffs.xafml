@@ -8,6 +8,15 @@
       </OwnMembers>
     </Class>
   </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="Persona_ListView_NoEmpleados" ViewId="Persona_ListView_NoEmpleados" Caption="Persona - NO Empleado" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
@@ -22,33 +31,43 @@
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="SimpleEditors" RelativeSize="26.58450704225352">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="27.667493796526056">
             <LayoutGroup Id="Persona" RelativeSize="100">
-              <LayoutGroup Id="Persona_col1" RelativeSize="49.935649935649934">
-                <LayoutItem Id="Identificacion" RelativeSize="28.571428571428573" />
-                <LayoutItem Id="Apellido" RelativeSize="21.428571428571427" />
-                <LayoutItem Id="Nombre" RelativeSize="21.428571428571427" />
-                <LayoutItem Id="FechaNacimiento" RelativeSize="28.571428571428573" />
+              <LayoutGroup Id="Persona_col1" RelativeSize="49.81751824817518">
+                <LayoutItem Id="Identificacion" RelativeSize="17.391304347826086" />
+                <LayoutItem Id="Apellido" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="Nombre" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="NombreCompleto" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="FechaNacimiento" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="EsEmpleado" RelativeSize="13.043478260869565" />
+                <LayoutItem Id="CargasFamiliares" RelativeSize="17.391304347826086" />
               </LayoutGroup>
-              <LayoutGroup Id="Persona_col2" RelativeSize="50.064350064350066" Caption="Persona_col2">
-                <LayoutItem Id="CargasFamiliares" RelativeSize="100" />
+              <LayoutGroup Id="Persona_col2" RelativeSize="50.18248175182482" Caption="Persona_col2">
+                <LayoutItem Id="DireccionDomicilio.Canton" Index="0" RelativeSize="17.391304347826086" Removed="True" />
+                <LayoutItem Id="Sueldo" Index="0" RelativeSize="17.391304347826086" />
                 <LayoutItem Id="DireccionDomicilio.Interseccion" RelativeSize="71.42857142857143" Index="1" Removed="True" />
                 <LayoutItem Id="DireccionDomicilio.Numero" RelativeSize="21.428571428571427" Index="1" Removed="True" />
+                <LayoutItem Id="TipoEmpleado" Index="1" RelativeSize="82.6086956521739" />
                 <LayoutItem Id="DireccionDomicilio.Calle" RelativeSize="21.428571428571427" Removed="True" />
+                <LayoutItem Id="DireccionDomicilio.Provincia" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
             <LayoutGroup Id="XPObject" Caption="Oid" RelativeSize="19.88950276243094" Removed="True">
               <LayoutItem Id="Oid" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="1" RelativeSize="15.669014084507042" Caption="Dirección" IsNewNode="True">
-            <LayoutGroup Id="Auto0429ff9d-db7a-483f-8ff0-b22887ab3363" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="50" IsNewNode="True">
-              <LayoutItem Id="DireccionDomicilio.Calle" ViewItem="DireccionDomicilio.Calle" Index="0" RelativeSize="49.935649935649934" IsNewNode="True" />
-              <LayoutItem Id="DireccionDomicilio.Numero" ViewItem="DireccionDomicilio.Numero" Index="1" RelativeSize="50.064350064350066" IsNewNode="True" />
+          <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="1" RelativeSize="14.764267990074442" Caption="Dirección" IsNewNode="True">
+            <LayoutGroup Id="Auto0429ff9d-db7a-483f-8ff0-b22887ab3363" ShowCaption="False" Caption="Auto0429ff9d-db7a-483f-8ff0-b22887ab3363(18)" Direction="Horizontal" Index="0" RelativeSize="40.42553191489362" IsNewNode="True">
+              <LayoutItem Id="DireccionDomicilio.Calle" ViewItem="DireccionDomicilio.Calle" Index="0" RelativeSize="49.90875912408759" IsNewNode="True" />
+              <LayoutItem Id="DireccionDomicilio.Numero" ViewItem="DireccionDomicilio.Numero" Index="1" RelativeSize="50.09124087591241" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutItem Id="DireccionDomicilio.Interseccion" ViewItem="DireccionDomicilio.Interseccion" Index="1" RelativeSize="50" IsNewNode="True" />
+            <LayoutItem Id="DireccionDomicilio.Interseccion" ViewItem="DireccionDomicilio.Interseccion" Index="1" RelativeSize="25.53191489361702" IsNewNode="True" />
+            <LayoutGroup Id="Auto159edade-fc50-4d03-af05-5c144246914a" ShowCaption="False" Caption="" Direction="Horizontal" Index="2" RelativeSize="34.04255319148936" IsNewNode="True">
+              <LayoutItem Id="DireccionDomicilio.Provincia" ViewItem="DireccionDomicilio.Provincia" Index="0" RelativeSize="50" IsNewNode="True" />
+              <LayoutItem Id="DireccionDomicilio.Canton" ViewItem="DireccionDomicilio.Canton" Index="1" RelativeSize="50" IsNewNode="True" />
+            </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="Tareas_Group" Direction="Vertical" RelativeSize="57.74647887323944" Index="2">
+          <LayoutGroup Id="Tareas_Group" Direction="Vertical" RelativeSize="57.5682382133995" Index="2">
             <LayoutItem Id="Tareas" RelativeSize="100" />
           </LayoutGroup>
         </LayoutGroup>
@@ -81,12 +100,29 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="Persona_ListView">
+    <ListView Id="Persona_ListView" Criteria="[EsEmpleado] = True">
       <Columns>
         <ColumnInfo Id="CargasFamiliares" Index="-1" />
         <ColumnInfo Id="DireccionDomicilio" Index="-1" />
         <ColumnInfo Id="Identificacion" Index="0" SortIndex="1" />
         <ColumnInfo Id="Nombre" Index="1" />
+      </Columns>
+    </ListView>
+    <ListView Id="Persona_ListView_NoEmpleados" ClassName="Test1.Module.BusinessObjects.Persona" Criteria="[EsEmpleado] = False" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="CargasFamiliares" PropertyName="CargasFamiliares" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="DireccionDomicilio" PropertyName="DireccionDomicilio" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="EsNuevoRegistro" PropertyName="EsNuevoRegistro" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Sueldo" PropertyName="Sueldo" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Identificacion" PropertyName="Identificacion" Index="0" SortIndex="1" IsNewNode="True" />
+        <ColumnInfo Id="Nombre" PropertyName="Nombre" SortIndex="0" SortOrder="Ascending" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Apellido" PropertyName="Apellido" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="NombreCompleto" PropertyName="NombreCompleto" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="FechaNacimiento" PropertyName="FechaNacimiento" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Edad" PropertyName="Edad" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="EsEmpleado" PropertyName="EsEmpleado" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="TipoEmpleado" PropertyName="TipoEmpleado" Index="9" IsNewNode="True" />
       </Columns>
     </ListView>
   </Views>

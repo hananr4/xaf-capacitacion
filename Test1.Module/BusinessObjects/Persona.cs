@@ -4,8 +4,10 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DevExpress.Xpo.Metadata;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +16,31 @@ namespace Test1.Module.BusinessObjects
 {
     [DefaultClassOptions]
     [RuleCriteria("CargasFamiliares>=0")]
-    [Appearance("PersonaEmpleado", Criteria = "EsEmpleado", TargetItems = "Identificacion, Nombre",
-        BackColor = "Yellow", FontColor = "Red" )]
-    [Appearance("PersonaEmpleado2", Criteria = "!EsEmpleado", TargetItems = "Identificacion, Nombre",
-        FontColor = "Blue")]
+    
+    [Appearance("PersonaEmpleado", Criteria = "EsEmpleado = true", TargetItems = "Identificacion, Nombre",
+        BackColor = "Yellow", 
+        FontColor = "Red" )]
+
+    [Appearance("PersonaEmpleado2", Criteria = "!EsEmpleado", TargetItems = "*",
+        FontColor = "Blue" )]
+
+
+    [Appearance("PersonaEmpleado3", Criteria = "!EsEmpleado", TargetItems = "Sueldo",
+        Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+
+
+    [Appearance("PersonaEmpleado4", Criteria = "EsNuevoRegistro", TargetItems = "NombreCompleto",
+        Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
+
+    [VisibleInReports(false)]
+    [VisibleInDashboards(false)]
     public class Persona : XPObject
     {
         public Persona(Session session) : base(session)        { }
 
-        
+
+        TipoEmpleado tipoEmpleado;
+        decimal sueldo;
         bool esEmpleado;
         Direccion direccionDomicilio;
         string apellido;
@@ -57,7 +75,7 @@ namespace Test1.Module.BusinessObjects
         }
 
 
-        
+
         [FetchOnly]
         [Persistent("NombreCompleto")]
         public string NombreCompleto
@@ -71,6 +89,10 @@ namespace Test1.Module.BusinessObjects
             get => fechaNacimiento;
             set => SetPropertyValue(nameof(FechaNacimiento), ref fechaNacimiento, value);
         }
+
+        [VisibleInDetailView(false)]
+        [VisibleInListView(true)]
+        public int Edad => DateTime.Today.Year - this.FechaNacimiento.Year;
 
         [Persistent]
         public bool EsEmpleado
@@ -92,8 +114,27 @@ namespace Test1.Module.BusinessObjects
             set => SetPropertyValue(nameof(DireccionDomicilio), ref direccionDomicilio, value);
         }
 
+        [VisibleInListView(false)]
+        [VisibleInDetailView(true)]
+        public decimal Sueldo
+        {
+            get => sueldo;
+            set => SetPropertyValue(nameof(Sueldo), ref sueldo, value);
+        }
 
-        [Association("Persona-Tareas"), Aggregated]
+        //[Browsable(false)]
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        public bool EsNuevoRegistro => this.Session.IsNewObject(this);
+
+        [DataSourceCriteria("EsActivo")]
+        public TipoEmpleado TipoEmpleado
+        {
+            get => tipoEmpleado;
+            set => SetPropertyValue(nameof(TipoEmpleado), ref tipoEmpleado, value);
+        }
+
+        [Association("Persona-Tareas"), DevExpress.Xpo.Aggregated]
         public XPCollection<Tarea> Tareas
         {
             get

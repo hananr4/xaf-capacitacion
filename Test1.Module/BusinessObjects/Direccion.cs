@@ -1,4 +1,5 @@
-﻿using DevExpress.Persistent.BaseImpl;
+﻿using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 using System;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Test1.Module.BusinessObjects
         public Direccion(Session session) : base(session) { }
 
 
+        Canton canton;
+        Provincia provincia;
         string interseccion;
         string numero;
         string calle;
@@ -37,6 +40,18 @@ namespace Test1.Module.BusinessObjects
             set => SetPropertyValue(nameof(Interseccion), ref interseccion, value);
         }
 
+        [ImmediatePostData]
+        public Provincia Provincia
+        {
+            get => provincia;
+            set => SetPropertyValue(nameof(Provincia), ref provincia, value);
+        }
 
+        [DataSourceCriteria("Provincia.Oid == '@this.Provincia.Oid'")]
+        public Canton Canton
+        {
+            get => canton;
+            set => SetPropertyValue(nameof(Canton), ref canton, value);
+        }
     }
 }
